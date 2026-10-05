@@ -1,0 +1,118 @@
+name: smoke test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  offline-checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: 语法编译
+        run: |
+          python -m compileall -q scripts
+
+      - name: 自带数据文件是合法 JSON，且字段齐全
+        run: |
+          python - <<'PY'
+          import json, re, sys
+          from pathlib import Path
+
+          problems = []
+
+          catalog = json.loads(Path("scripts/journals.json").read_text(encoding="utf-8"))
+          journals = catalog.get("journals") or []
+          if len(journals) < 10:
+              problems.append(f"期刊目录太小：{len(journals)} 条")
+          seen = set()
+          for entry in journals:
+              name, issn = entry.get("name"), entry.get("issn", "")
+              if not name:
+                  problems.append(f"缺 name：{entry}")
+              # 期刊目录是手动维护的，ISSN 打错会静默抓不到任何东西，所以在这里卡一道
+              if not re.fullmatch(r"\d{4}-\d{3}[\dX]", issn):
+                  problems.append(f"ISSN 格式不对：{name} -> {issn!r}")
+              if issn in seen:
+                  problems.append(f"ISSN 重复：{name} -> {issn}")
+              seen.add(issn)
+          defaults = [j["name"] for j in journals if j.get("default")]
+          print(f"期刊 {len(journals)} 本，默认集 {len(defaults)} 本")
+          if not defaults:
+              problems.append("没有任何 default=true 的期刊")
+
+          profiles = json.loads(Path("scripts/profiles.json").read_text(encoding="utf-8"))
+          if profiles.get("default_profile") not in (profiles.get("profiles") or {}):
+              problems.append("default_profile 不在 profiles 里")
+          for key, prof in (profiles.get("profiles") or {}).items():
+              if not prof.get("keywords"):
+                  problems.append(f"方案 {key} 没有关键词")
+              else:
+                  print(f"方案 {key}: {len(prof['keywords'])} 组关键词")
+
+          skill = Path("SKILL.md").read_text(encoding="utf-8")
+          if not skill.startswith("---"):
+              problems.append("SKILL.md 缺少 YAML frontmatter")
+          for field in ("name:", "description:"):
+              if field not in skill.split("---")[1]:
+                  problems.append(f"SKILL.md frontmatter 缺少 {field}")
+
+          if problems:
+              print("\n".join("✗ " + p for p in problems))
+              sys.exit(1)
+          print("全部通过")
+          PY
+
+      - name: 命令行能起来
+        # 这两条只读本地文件、不联网，所以在 CI 里稳定
+        run: |
+          python scripts/digest.py --list-journals
+          python scripts/digest.py --list-profiles
+          python scripts/digest.py --help > /dev/null
+
+      - name: 期刊匹配与报错路径（离线）
+        run: |
+          python - <<'PY'
+          import subprocess, sys
+          sys.path.insert(0, "scripts")
+          from catalog import load_catalog, resolve_journals
+
+          catalog = load_catalog()
+          # 刊名 / 别名 / ISSN 三种写法都要能解析到同一本刊
+          cases = {
+              "Nature": "Nature",
+              "ACP": "Atmospheric Chemistry and Physics",
+              "es&t": "Environmental Science & Technology",
+              "1748-9326": "Environmental Research Letters",
+              "GRL": "Geophysical Research Letters",
+          }
+          for hint, expected in cases.items():
+              got, _ = resolve_journals([hint], catalog)
+              names = [g["name"] for g in got]
+              assert names == [expected], f"{hint!r} 解析成 {names}，期望 [{expected!r}]"
+
+          got, _ = resolve_journals(["all"], catalog)
+          assert len(got) == len(catalog["journals"]), "all 应当返回全部期刊"
+
+          got, unresolved = resolve_journals(["nonexistent-journal"], catalog)
+          assert got == [] and unresolved == ["nonexistent-journal"], "不存在的刊名应当落到 unresolved"
+          print("目录匹配 OK")
+
+          # 一本刊都解析不出来时必须报错退出，不能静默出一份空报告
+          r = subprocess.run(
+              [sys.executable, "scripts/digest.py", "--journals", "nonexistent-journal"],
+              capture_output=True, text=True,
+          )
+          assert r.returncode != 0, "全部期刊无法解析时应当报错退出"
+          print("报错路径 OK")
+          PY

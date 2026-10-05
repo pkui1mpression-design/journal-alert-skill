@@ -1,0 +1,39 @@
+{
+  "_comment": "预置关键词方案。不给 --keywords/--spec 时用 default_profile。用户的中文意图一般应现写关键词（见 SKILL.md 第 1 步），这些方案只是省事的起点。",
+  "default_profile": "atmospheric",
+  "profiles": {
+    "atmospheric": {
+      "title": "大气环境文献日报",
+      "keywords": [
+        { "label": "空气污染", "weight": 3, "terms": ["air pollution", "air pollutant", "air quality", "particulate matter", "pm2.5", "pm10", "ultrafine particle", "aerosol", "ozone", "no2", "so2", "haze", "smog", "emission inventory", "anthropogenic emission", "exposure assessment"] },
+        { "label": "遥感", "weight": 3, "terms": ["remote sensing", "satellite", "modis", "viirs", "tropomi", "landsat", "sentinel-5p", "hyperspectral", "lidar", "retrieval algorithm", "geostationary", "aerosol optical depth", "aod"] },
+        { "label": "大气化学", "weight": 3, "terms": ["atmospheric chemistry", "atmospheric oxidation", "photochemistry", "secondary organic aerosol", "soa", "nox", "voc", "volatile organic", "chemical transport model", "heterogeneous chemistry", "atmospheric lifetime", "oh radical"] },
+        { "label": "生物地球化学", "weight": 3, "terms": ["biogeochemistry", "biogeochemical", "carbon cycle", "nitrogen cycle", "nutrient cycling", "methane", "ch4 flux", "co2 flux", "carbon flux", "terrestrial carbon", "soil carbon", "nitrous oxide", "n2o"] }
+      ]
+    },
+    "microplastic": {
+      "title": "微塑料与纳米塑料",
+      "keywords": [
+        { "label": "微塑料", "weight": 3, "terms": ["microplastic", "microplastics", "nanoplastic", "nanoplastics", "plastic debris", "plastic particle"] },
+        { "label": "传输与归趋", "weight": 3, "terms": ["atmospheric transport", "long-range transport", "atmospheric deposition", "riverine export", "ocean plastic", "sediment", "bioaccumulation"] },
+        { "label": "健康与生态效应", "weight": 3, "terms": ["microplastic ingestion", "ecotoxicity", "human exposure", "oxidative stress", "trophic transfer"] }
+      ]
+    },
+    "carbon": {
+      "title": "碳循环与碳中和",
+      "keywords": [
+        { "label": "碳循环", "weight": 3, "terms": ["carbon cycle", "carbon flux", "co2 flux", "terrestrial carbon", "soil carbon", "carbon sink", "net ecosystem exchange", "gross primary production"] },
+        { "label": "温室气体", "weight": 3, "terms": ["carbon dioxide", "methane", "ch4", "n2o", "nitrous oxide", "greenhouse gas", "ghg emission"] },
+        { "label": "减排与碳中和", "weight": 3, "terms": ["carbon neutrality", "net zero", "carbon emission", "emission reduction", "carbon capture", "decarbonization", "mitigation pathway"] }
+      ]
+    },
+    "ai-earth": {
+      "title": "AI × 地球科学",
+      "keywords": [
+        { "label": "机器学习方法", "weight": 3, "terms": ["machine learning", "deep learning", "neural network", "random forest", "foundation model", "transformer", "emulator", "surrogate model"] },
+        { "label": "地球观测", "weight": 3, "terms": ["earth observation", "satellite retrieval", "remote sensing", "downscaling", "data assimilation", "reanalysis"] },
+        { "label": "气候与环境应用", "weight": 3, "terms": ["climate prediction", "weather forecasting", "air quality forecasting", "emission inversion", "extreme event detection"] }
+      ]
+    }
+  }
+}

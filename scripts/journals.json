@@ -1,0 +1,52 @@
+{
+  "_comment": "期刊目录。name 用于报告显示，issn 是 OpenAlex/Crossref 检索的必需键（没有 RSS 也能抓），rss 可为空字符串。default=true 的构成「不给期刊参数时」的默认集合。aliases 用于名称匹配，tags 仅作参考。新增期刊见 references/journal-catalog.md。",
+  "journals": [
+    { "name": "Nature", "issn": "0028-0836", "rss": "https://www.nature.com/nature.rss", "aliases": ["nature"], "tags": ["综合"], "default": true },
+    { "name": "Science", "issn": "0036-8075", "rss": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=science", "aliases": ["science"], "tags": ["综合"], "default": true },
+    { "name": "Science Advances", "issn": "2375-2548", "rss": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=sciadv", "aliases": ["sciadv", "science advances"], "tags": ["综合"], "default": true },
+    { "name": "PNAS", "issn": "0027-8424", "rss": "https://www.pnas.org/action/showFeed?type=etoc&feed=rss&jc=pnas", "aliases": ["pnas", "proceedings of the national academy of sciences"], "tags": ["综合"], "default": true },
+    { "name": "Nature Communications", "issn": "2041-1723", "rss": "https://www.nature.com/ncomms.rss", "aliases": ["ncomms", "nat commun"], "tags": ["综合"], "default": true },
+
+    { "name": "Nature Climate Change", "issn": "1758-6798", "rss": "https://www.nature.com/nclimate.rss", "aliases": ["nclimate", "ncc"], "tags": ["气候"], "default": true },
+    { "name": "Nature Geoscience", "issn": "1752-0908", "rss": "https://www.nature.com/ngeo.rss", "aliases": ["ngeo"], "tags": ["地球科学"], "default": true },
+    { "name": "Nature Sustainability", "issn": "2398-9629", "rss": "https://www.nature.com/natsustain.rss", "aliases": ["natsustain"], "tags": ["可持续"], "default": true },
+    { "name": "Nature Cities", "issn": "2731-9997", "rss": "https://www.nature.com/natcities.rss", "aliases": ["natcities"], "tags": ["城市"], "default": true },
+    { "name": "Nature Water", "issn": "2731-6084", "rss": "https://www.nature.com/natwater.rss", "aliases": ["natwater"], "tags": ["水"], "default": false },
+    { "name": "Nature Food", "issn": "2662-1355", "rss": "https://www.nature.com/natfood.rss", "aliases": ["natfood"], "tags": ["食品"], "default": false },
+    { "name": "Nature Ecology & Evolution", "issn": "2397-334X", "rss": "https://www.nature.com/natecolevol.rss", "aliases": ["natecolevol", "nee"], "tags": ["生态"], "default": false },
+    { "name": "npj Climate and Atmospheric Science", "issn": "2397-3722", "rss": "https://www.nature.com/npjclimatsci.rss", "aliases": ["npj climate", "npjclimatsci"], "tags": ["大气"], "default": true },
+
+    { "name": "Earth's Future", "issn": "2328-4277", "rss": "https://agupubs.onlinelibrary.wiley.com/feed/23284277/most-recent", "aliases": ["earths future", "earth future"], "tags": ["地球系统"], "default": true },
+    { "name": "Geophysical Research Letters", "issn": "1944-8007", "rss": "https://agupubs.onlinelibrary.wiley.com/feed/19448007/most-recent", "aliases": ["grl"], "tags": ["地球物理"], "default": true },
+    { "name": "Journal of Geophysical Research: Atmospheres", "issn": "2169-8996", "rss": "https://agupubs.onlinelibrary.wiley.com/feed/21698996/most-recent", "aliases": ["jgr atmospheres", "jgr-atmospheres", "jgrd"], "tags": ["大气"], "default": true },
+    { "name": "Journal of Geophysical Research: Biogeosciences", "issn": "2169-8961", "rss": "https://agupubs.onlinelibrary.wiley.com/feed/21698961/most-recent", "aliases": ["jgr biogeosciences"], "tags": ["生物地球化学"], "default": false },
+    { "name": "Global Biogeochemical Cycles", "issn": "1944-9224", "rss": "https://agupubs.onlinelibrary.wiley.com/feed/19449224/most-recent", "aliases": ["gbc"], "tags": ["生物地球化学"], "default": false },
+    { "name": "Reviews of Geophysics", "issn": "1944-9208", "rss": "https://agupubs.onlinelibrary.wiley.com/feed/19449208/most-recent", "aliases": ["rog"], "tags": ["综述"], "default": false },
+
+    { "name": "Atmospheric Chemistry and Physics", "issn": "1680-7324", "rss": "https://acp.copernicus.org/xml/rss2_0.xml", "aliases": ["acp"], "tags": ["大气化学"], "default": true },
+    { "name": "Atmospheric Measurement Techniques", "issn": "1867-8548", "rss": "https://amt.copernicus.org/xml/rss2_0.xml", "aliases": ["amt"], "tags": ["观测"], "default": false },
+    { "name": "Biogeosciences", "issn": "1726-4189", "rss": "https://bg.copernicus.org/xml/rss2_0.xml", "aliases": ["bg"], "tags": ["生物地球化学"], "default": false },
+    { "name": "Geoscientific Model Development", "issn": "1991-9603", "rss": "https://gmd.copernicus.org/xml/rss2_0.xml", "aliases": ["gmd"], "tags": ["模式"], "default": false },
+
+    { "name": "Environmental Research Letters", "issn": "1748-9326", "rss": "https://iopscience.iop.org/journal/rss/1748-9326", "aliases": ["erl"], "tags": ["环境"], "default": true },
+    { "name": "Environmental Science & Technology", "issn": "0013-936X", "rss": "", "aliases": ["es&t", "est", "env sci technol"], "tags": ["环境"], "default": true },
+    { "name": "Environmental Science & Technology Letters", "issn": "2328-8930", "rss": "", "aliases": ["es&t letters", "estl"], "tags": ["环境"], "default": false },
+
+    { "name": "Atmospheric Environment", "issn": "1352-2310", "rss": "https://rss.sciencedirect.com/publication/science/13522310", "aliases": ["ae"], "tags": ["大气"], "default": true },
+    { "name": "Remote Sensing of Environment", "issn": "0034-4257", "rss": "https://rss.sciencedirect.com/publication/science/00344257", "aliases": ["rse"], "tags": ["遥感"], "default": true },
+    { "name": "Science of the Total Environment", "issn": "0048-9697", "rss": "https://rss.sciencedirect.com/publication/science/00489697", "aliases": ["stoten", "science of the total environment"], "tags": ["环境"], "default": false },
+    { "name": "Environmental Pollution", "issn": "0269-7491", "rss": "https://rss.sciencedirect.com/publication/science/02697491", "aliases": ["env pollut"], "tags": ["环境"], "default": false },
+    { "name": "Environment International", "issn": "0160-4120", "rss": "https://rss.sciencedirect.com/publication/science/01604120", "aliases": ["env int"], "tags": ["环境健康"], "default": false },
+    { "name": "Water Research", "issn": "0043-1354", "rss": "https://rss.sciencedirect.com/publication/science/00431354", "aliases": ["wr"], "tags": ["水"], "default": false },
+    { "name": "Global Environmental Change", "issn": "0959-3780", "rss": "https://rss.sciencedirect.com/publication/science/09593780", "aliases": ["gec"], "tags": ["全球变化"], "default": false },
+    { "name": "Applied Energy", "issn": "0306-2619", "rss": "https://rss.sciencedirect.com/publication/science/03062619", "aliases": [], "tags": ["能源"], "default": false },
+    { "name": "One Earth", "issn": "2590-3322", "rss": "https://rss.sciencedirect.com/publication/science/25903322", "aliases": [], "tags": ["可持续"], "default": false },
+    { "name": "Journal of Cleaner Production", "issn": "0959-6526", "rss": "https://rss.sciencedirect.com/publication/science/09596526", "aliases": ["jclepro"], "tags": ["清洁生产"], "default": false },
+    { "name": "Atmospheric Research", "issn": "0169-8095", "rss": "https://rss.sciencedirect.com/publication/science/01698095", "aliases": ["atmos res"], "tags": ["大气"], "default": false },
+
+    { "name": "Global Change Biology", "issn": "1365-2486", "rss": "https://onlinelibrary.wiley.com/feed/13652486/most-recent", "aliases": ["gcb"], "tags": ["全球变化"], "default": true },
+
+    { "name": "Bulletin of the American Meteorological Society", "issn": "1520-0477", "rss": "", "aliases": ["bams"], "tags": ["气象"], "default": false },
+    { "name": "Journal of Climate", "issn": "1520-0442", "rss": "", "aliases": ["jclim"], "tags": ["气候"], "default": false }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "topic": "微塑料大气传输",
+  "keywords": [
+    {
+      "label": "微塑料",
+      "weight": 3,
+      "terms": ["microplastic", "microplastics", "nanoplastic", "nanoplastics", "plastic debris", "plastic particle"]
+    },
+    {
+      "label": "传输与归趋",
+      "weight": 3,
+      "terms": ["atmospheric transport", "long-range transport", "atmospheric deposition", "airborne microplastic", "atmospheric microplastic"]
+    },
+    {
+      "label": "健康与生态效应",
+      "weight": 3,
+      "terms": ["microplastic ingestion", "ecotoxicity", "human exposure", "oxidative stress", "trophic transfer"]
+    }
+  ],
+  "journals": ["Nature", "Nature Sustainability", "ACP", "Environmental Science & Technology", "Science of the Total Environment", "Environmental Pollution", "Environment International", "Remote Sensing of Environment"],
+  "days": 14,
+  "max_entries": 25,
+  "tiers": { "must_read": 12, "worth_reading": 6, "min_score": 3 }
+}
